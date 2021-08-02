@@ -1,0 +1,15 @@
+{
+    "name": "fcodedigital/focusnfe",
+    "autoload": {
+        "psr-4": {
+            "FCodeDigital\\FocusNfe\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "FCode",
+            "email": "ti@fcode.com.br"
+        }
+    ],
+    "require": {}
+}
