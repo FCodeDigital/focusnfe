@@ -1,6 +1,6 @@
 <?php
 
-namespace FCodeDigital\FocusNfe\Nfe;
+namespace FCodeDigital\FocusNfe\Nfce;
 
 class Data
 {
