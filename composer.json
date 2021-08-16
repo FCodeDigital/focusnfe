@@ -1,5 +1,12 @@
 {
     "name": "fcodedigital/focusnfe",
+    "description": "Conexão com FocusNFE",
+    "type": "library",
+    "keywords": [
+        "focusnfe",
+        "nfe"
+    ],
+    "license": "Apache",
     "autoload": {
         "psr-4": {
             "FCodeDigital\\FocusNfe\\": "src/"
@@ -11,5 +18,7 @@
             "email": "ti@fcode.com.br"
         }
     ],
-    "require": {}
+    "require": {
+        "php": ">=7.4"
+    }
 }
