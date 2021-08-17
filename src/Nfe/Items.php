@@ -4,74 +4,86 @@ namespace FCodeDigital\FocusNfe\Nfe;
 
 class Items
 {
-    //"numero_item" => "1",
-    //"codigo_produto" => "1232",
-    //"descricao" => "Cartu00f5es de Visita",
-    //"cfop" => "6923",
-    //"unidade_comercial" => "un",
-    //"quantidade_comercial" => "100",
-    //"valor_unitario_comercial" => "0.4723",
-    //"valor_unitario_tributavel" => "0.4723",
-    //"unidade_tributavel" => "un",
-    //"codigo_ncm" => "49111090",
-    //"quantidade_tributavel" => "100",
-    //"valor_bruto" => "47.23",
-    //"icms_situacao_tributaria" => "400",
-    //"icms_origem" => "0",
-    //"pis_situacao_tributaria" => "07",
-    //"cofins_situacao_tributaria" => "07"
+    // numero_item
+    // codigo_produto
+    // descricao
+    // cfop
+    // quantidade_comercial
+    // quantidade_tributavel
+    // valor_unitario_comercial
+    // valor_unitario_tributavel
+    // unidade_comercial
+    // unidade_tributavel
+    // valor_frete
+    // valor_bruto
+    // valor_desconto
+    // codigo_ncm
+    // inclui_no_total
+    // icms_origem
+    // icms_situacao_tributaria
+    // pis_situacao_tributaria
+    // cofins_situacao_tributaria
 
-    public string $numero_item;
-    public string $codigo_produto;
-    public string $descricao;
-    public string $cfop;
-    public string $unidade_comercial;
-    public string $quantidade_comercial;
-    public string $valor_unitario_comercial;
-    public string $valor_unitario_tributavel;
-    public string $unidade_tributavel;
-    public string $codigo_ncm;
-    public string $quantidade_tributavel;
-    public string $valor_bruto;
-    public string $icms_situacao_tributaria;
-    public string $icms_origem;
-    public string $pis_situacao_tributaria;
-    public string $cofins_situacao_tributaria;
+    public ?string $numero_item;
+    public ?string $codigo_produto;
+    public ?string $descricao;
+    public ?string $cfop;
+    public ?string $quantidade_comercial;
+    public ?string $quantidade_tributavel;
+    public ?string $valor_unitario_comercial;
+    public ?string $valor_unitario_tributavel;
+    public ?string $unidade_comercial;
+    public ?string $unidade_tributavel;
+    public ?string $valor_frete;
+    public ?string $valor_bruto;
+    public ?string $valor_desconto;
+    public ?string $codigo_ncm;
+    public ?string $inclui_no_total;
+    public ?string $icms_origem;
+    public ?string $icms_situacao_tributaria;
+    public ?string $pis_situacao_tributaria;
+    public ?string $cofins_situacao_tributaria;
 
 
 
     public function __construct(
-        string $numero_item,
-        string $codigo_produto,
-        string $descricao,
-        string $cfop,
-        string $unidade_comercial,
-        string $quantidade_comercial,
-        string $valor_unitario_comercial,
-        string $valor_unitario_tributavel,
-        string $unidade_tributavel,
-        string $codigo_ncm,
-        string $quantidade_tributavel,
-        string $valor_bruto,
-        string $icms_situacao_tributaria,
-        string $icms_origem,
-        string $pis_situacao_tributaria,
-        string $cofins_situacao_tributaria
+        ?string $numero_item = null,
+        ?string $codigo_produto = null,
+        ?string $descricao = null,
+        ?string $cfop = null,
+        ?string $quantidade_comercial = null,
+        ?string $quantidade_tributavel = null,
+        ?string $valor_unitario_comercial = null,
+        ?string $valor_unitario_tributavel = null,
+        ?string $unidade_comercial = null,
+        ?string $unidade_tributavel = null,
+        ?string $valor_frete = null,
+        ?string $valor_bruto = null,
+        ?string $valor_desconto = null,
+        ?string $codigo_ncm = null,
+        ?string $inclui_no_total = null,
+        ?string $icms_origem = null,
+        ?string $icms_situacao_tributaria = null,
+        ?string $pis_situacao_tributaria = null,
+        ?string $cofins_situacao_tributaria = null
     ) {
         $this->numero_item = $numero_item;
         $this->codigo_produto = $codigo_produto;
         $this->descricao = $descricao;
         $this->cfop = $cfop;
-        $this->unidade_comercial = $unidade_comercial;
         $this->quantidade_comercial = $quantidade_comercial;
+        $this->quantidade_tributavel = $quantidade_tributavel;
         $this->valor_unitario_comercial = $valor_unitario_comercial;
         $this->valor_unitario_tributavel = $valor_unitario_tributavel;
+        $this->unidade_comercial = $unidade_comercial;
         $this->unidade_tributavel = $unidade_tributavel;
-        $this->codigo_ncm = $codigo_ncm;
-        $this->quantidade_tributavel = $quantidade_tributavel;
+        $this->valor_frete = $valor_frete;
         $this->valor_bruto = $valor_bruto;
-        $this->icms_situacao_tributaria = $icms_situacao_tributaria;
+        $this->valor_desconto = $valor_desconto;
+        $this->codigo_ncm = $codigo_ncm;
+        $this->inclui_no_total = $inclui_no_total;
         $this->icms_origem = $icms_origem;
+        $this->icms_situacao_tributaria = $icms_situacao_tributaria;
         $this->pis_situacao_tributaria = $pis_situacao_tributaria;
         $this->cofins_situacao_tributaria = $cofins_situacao_tributaria;
     }
@@ -83,16 +95,19 @@ class Items
             'codigo_produto' => $this->codigo_produto,
             'descricao' => $this->descricao,
             'cfop' => $this->cfop,
-            'unidade_comercial' => $this->unidade_comercial,
             'quantidade_comercial' => $this->quantidade_comercial,
+            'quantidade_tributavel' => $this->quantidade_tributavel,
             'valor_unitario_comercial' => $this->valor_unitario_comercial,
             'valor_unitario_tributavel' => $this->valor_unitario_tributavel,
+            'unidade_comercial' => $this->unidade_comercial,
             'unidade_tributavel' => $this->unidade_tributavel,
-            'codigo_ncm' => $this->codigo_ncm,
-            'quantidade_tributavel' => $this->quantidade_tributavel,
+            'valor_frete' => $this->valor_frete,
             'valor_bruto' => $this->valor_bruto,
-            'icms_situacao_tributaria' => $this->icms_situacao_tributaria,
+            'valor_desconto' => $this->valor_desconto,
+            'codigo_ncm' => $this->codigo_ncm,
+            'inclui_no_total' => $this->inclui_no_total,
             'icms_origem' => $this->icms_origem,
+            'icms_situacao_tributaria' => $this->icms_situacao_tributaria,
             'pis_situacao_tributaria' => $this->pis_situacao_tributaria,
             'cofins_situacao_tributaria' => $this->cofins_situacao_tributaria,
         ];

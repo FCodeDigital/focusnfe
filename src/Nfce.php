@@ -17,53 +17,13 @@ class Nfce extends FocusNfe
         );
     }
 
-    //enviarNfe
-    public function enviar(string $reference, array $params = [])
+    //enviarNfce
+    public function enviar(string $reference, \FCodeDigital\FocusNfe\Nfce\Data $params)
     {
-        $defaults = array (
-            "cnpj_emitente" => "51916585000125",
-            "data_emissao" => "2017-12-07T12:40:10",
-            "indicador_inscricao_estadual_destinatario" => "9",
-            "modalidade_frete" => "9",
-            "local_destino" => "1",
-            "presenca_comprador" => "1",
-            "natureza_operacao" => "VENDA AO CONSUMIDOR",
-            "itens" => array(
-                array(
-                    "numero_item" => "1",
-                    "codigo_ncm" => "62044200",
-                    "quantidade_comercial" => "1.00",
-                    "quantidade_tributavel" => "1.00",
-                    "cfop" => "5102",
-                    "valor_unitario_tributavel" => "1.00",
-                    "valor_unitario_comercial" => "1.00",
-                    "valor_desconto" => "0.00",
-                    "descricao" => "NOTA FISCAL EMITIDA EM AMBIENTE DE HOMOLOGACAO - SEM VALOR FISCAL",
-                    "codigo_produto" => "251887",
-                    "icms_origem" => "0",
-                    "icms_situacao_tributaria" => "102",
-                    "unidade_comercial" => "un",
-                    "unidade_tributavel" => "un",
-                    "valor_total_tributos" => "1.00"
-                )
-            ),
-            "formas_pagamento" => array(
-                array(
-                    "forma_pagamento" => "03",
-                    "valor_pagamento" => "1.00",
-                    "nome_credenciadora" => "Cielo",
-                    "bandeira_operadora" => "02",
-                    "numero_autorizacao" => "R07242"
-                )
-            ),
-        );
-
-        $params = array_merge($defaults, $params);
-
-        return $this->callPost("/v2/nfce?ref=" . $reference, $params);
+        return $this->callPost("/v2/nfe?ref=" . $reference, $params->toArray());
     }
 
-    //consultarNfe
+    //consultarNfce
     public function consultar(string $reference, int $completa = NULL)
     {
         $params = [];
@@ -123,7 +83,7 @@ class Nfce extends FocusNfe
             'justificativa' => $justificativa
         ];
 
-        return $this->callPost("/v2/nfe/inutilizacao", $params);
+        return $this->callPost("/v2/nfce/inutilizacao", $params);
     }
 
 

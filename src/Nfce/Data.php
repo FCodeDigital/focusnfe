@@ -4,160 +4,82 @@ namespace FCodeDigital\FocusNfe\Nfce;
 
 class Data
 {
-    // "natureza_operacao" => NULL,
-    // "data_emissao" => date('Y-m-dTh:m:s'),
-    // "data_entrada_saida" => NULL,
-    // "tipo_documento" => NULL,
-    // "finalidade_emissao" => NULL,
-    // "cnpj_emitente" => NULL,
-    // "nome_emitente" => NULL,
-    // "nome_fantasia_emitente" => NULL,
-    // "logradouro_emitente" => NULL,
-    // "numero_emitente" => NULL,
-    // "bairro_emitente" => NULL,
-    // "municipio_emitente" => NULL,
-    // "uf_emitente" => NULL,
-    // "cep_emitente" => NULL,
-    // "inscricao_estadual_emitente" => NULL,
-    // "nome_destinatario" => NULL,
-    // "cpf_destinatario" => NULL,
-    // "telefone_destinatario" => NULL,
-    // "logradouro_destinatario" => NULL,
-    // "numero_destinatario" => NULL,
-    // "bairro_destinatario" => NULL,
-    // "municipio_destinatario" => NULL,
-    // "uf_destinatario" => NULL,
-    // "pais_destinatario" => NULL,
-    // "cep_destinatario" => NULL,
-    // "valor_frete" => NULL,
-    // "valor_seguro" => NULL,
-    // "valor_total" => NULL,
-    // "valor_produtos" => NULL,
-    // "modalidade_frete" => NULL,
-    // "items" => array(
-    //     array(
-    //         "numero_item" => "1",
-    //         "codigo_produto" => "1232",
-    //         "descricao" => "Cartu00f5es de Visita",
-    //         "cfop" => "6923",
-    //         "unidade_comercial" => "un",
-    //         "quantidade_comercial" => "100",
-    //         "valor_unitario_comercial" => "0.4723",
-    //         "valor_unitario_tributavel" => "0.4723",
-    //         "unidade_tributavel" => "un",
-    //         "codigo_ncm" => "49111090",
-    //         "quantidade_tributavel" => "100",
-    //         "valor_bruto" => "47.23",
-    //         "icms_situacao_tributaria" => "400",
-    //         "icms_origem" => "0",
-    //         "pis_situacao_tributaria" => "07",
-    //         "cofins_situacao_tributaria" => "07"
-    //     )
-    // ),
 
-    public ?string $naturezaOperacao;
-    public ?string $dataEmissao;
-    public ?string $dataEntradaSaida;
-    public ?string $tipoDocumento;
-    public ?string $finalidadeEmissao;
-    public ?string $cnpjEmitente;
-    public ?string $nomeEmitente;
-    public ?string $nomeFantasiaEmitente;
-    public ?string $logradouroEmitente;
-    public ?string $numeroEmitente;
-    public ?string $bairroEmitente;
-    public ?string $municipioEmitente;
-    public ?string $ufEmitente;
-    public ?string $cepEmitente;
-    public ?string $inscricaoEstadualEmitente;
-    public ?string $nomeDestinatario;
-    public ?string $cpfDestinatario;
-    public ?string $telefoneDestinatario;
-    public ?string $logradouroDestinatario;
-    public ?string $numeroDestinatario;
-    public ?string $bairroDestinatario;
-    public ?string $municipioDestinatario;
-    public ?string $ufDestinatario;
-    public ?string $paisDestinatario;
-    public ?string $cepDestinatario;
-    public ?string $valorFrete;
-    public ?string $valorSeguro;
-    public ?string $valorTotal;
-    public ?string $valorProdutos;
-    public ?string $modalidadeFrete;
+    public ?string $cnpj_emitente = null;
+    public ?string $cpf_destinatario = null;
+    public ?string $nome_destinatario = null;
+    public ?float $valor_produtos = null;
+    public ?float $valor_total = null;
+    public ?float $valor_troco = null;
+    public ?float $valor_desconto = null;
+    public ?float $valor_total_tributos = null;
+    public ?string $data_emissao = null;
+    public ?string $indicador_inscricao_estadual_destinatario = null;
+    public ?string $modalidade_frete = null;
+    public ?string $forma_pagamento = null;
+    public ?string $tipo_documento = null;
+    public ?string $finalidade_emissao = null;
+    public ?string $local_destino = null;
+    public ?string $consumidor_final = null;
+    public ?string $presenca_comprador = null;
+    public ?string $natureza_operacao = null;
+    public ?float $icms_base_calculo = null;
+    public ?float $icms_valor_total = null;
+    public ?float $valor_outras_despesas = null;
+    public ?float $valor_seguro = null;
+    public ?float $valor_frete = null;
     public array $items;
 
     public function __construct(
-        ?string $naturezaOperacao,
-        ?string $dataEmissao,
-        ?string $dataEntradaSaida = null,
-        ?string $tipoDocumento,
-        ?string $finalidadeEmissao = null,
-        ?string $cnpjEmitente = null,
-        ?string $nomeEmitente = null,
-        ?string $nomeFantasiaEmitente = null,
-        ?string $logradouroEmitente = null,
-        ?string $numeroEmitente = null,
-        ?string $bairroEmitente = null,
-        ?string $municipioEmitente = null,
-        ?string $ufEmitente = null,
-        ?string $cepEmitente = null,
-        ?string $inscricaoEstadualEmitente = null,
-        ?string $nomeDestinatario = null,
-        ?string $cpfDestinatario = null,
-        ?string $telefoneDestinatario = null,
-        ?string $logradouroDestinatario = null,
-        ?string $numeroDestinatario = null,
-        ?string $bairroDestinatario = null,
-        ?string $municipioDestinatario = null,
-        ?string $ufDestinatario = null,
-        ?string $paisDestinatario = null,
-        ?string $cepDestinatario = null,
-        ?string $valorFrete = null,
-        ?string $valorSeguro = null,
-        ?string $valorTotal = null,
-        ?string $valorProdutos = null,
-        ?string $modalidadeFrete = null
+        ?string $cnpj_emitente = null,
+        ?string $cpf_destinatario = null,
+        ?string $nome_destinatario = null,
+        ?float $valor_produtos = null,
+        ?float $valor_total = null,
+        ?float $valor_troco = null,
+        ?float $valor_desconto = null,
+        ?float $valor_total_tributos = null,
+        ?string $data_emissao = null,
+        ?string $indicador_inscricao_estadual_destinatario = null,
+        ?string $modalidade_frete = null,
+        ?string $forma_pagamento = null,
+        ?string $tipo_documento = null,
+        ?string $finalidade_emissao = null,
+        ?string $local_destino = null,
+        ?string $consumidor_final = null,
+        ?string $presenca_comprador = null,
+        ?string $natureza_operacao = null,
+        ?float $icms_base_calculo = null,
+        ?float $icms_valor_total = null,
+        ?float $valor_outras_despesas = null,
+        ?float $valor_seguro = null,
+        ?float $valor_frete = null,
+        ?array $items = []
     ) {
-
-        //Validação de tipo de documento
-
-        if(!($tipoDocumento >= 0 && $tipoDocumento <= 1)) {
-            throw new \InvalidArgumentException('Tipo de documento inválido. Deve ser 0 ou 1');
-        }
-
-        //validação de local
-
-        $this->naturezaOperacao = $naturezaOperacao;
-        $this->dataEmissao = $dataEmissao;
-        $this->dataEntradaSaida = $dataEntradaSaida;
-        $this->tipoDocumento = $tipoDocumento;
-        $this->finalidadeEmissao = $finalidadeEmissao;
-        $this->cnpjEmitente = $cnpjEmitente;
-        $this->nomeEmitente = $nomeEmitente;
-        $this->nomeFantasiaEmitente = $nomeFantasiaEmitente;
-        $this->logradouroEmitente = $logradouroEmitente;
-        $this->numeroEmitente = $numeroEmitente;
-        $this->bairroEmitente = $bairroEmitente;
-        $this->municipioEmitente = $municipioEmitente;
-        $this->ufEmitente = $ufEmitente;
-        $this->cepEmitente = $cepEmitente;
-        $this->inscricaoEstadualEmitente = $inscricaoEstadualEmitente;
-        $this->nomeDestinatario = $nomeDestinatario;
-        $this->cpfDestinatario = $cpfDestinatario;
-        $this->telefoneDestinatario = $telefoneDestinatario;
-        $this->logradouroDestinatario = $logradouroDestinatario;
-        $this->numeroDestinatario = $numeroDestinatario;
-        $this->bairroDestinatario = $bairroDestinatario;
-        $this->municipioDestinatario = $municipioDestinatario;
-        $this->ufDestinatario = $ufDestinatario;
-        $this->paisDestinatario = $paisDestinatario;
-        $this->cepDestinatario = $cepDestinatario;
-        $this->valorFrete = $valorFrete;
-        $this->valorSeguro = $valorSeguro;
-        $this->valorTotal = $valorTotal;
-        $this->valorProdutos = $valorProdutos;
-        $this->modalidadeFrete = $modalidadeFrete;
+        $this->cnpj_emitente = $cnpj_emitente;
+        $this->cpf_destinatario = $cpf_destinatario;
+        $this->nome_destinatario = $nome_destinatario;
+        $this->valor_produtos = $valor_produtos;
+        $this->valor_total = $valor_total;
+        $this->valor_troco = $valor_troco;
+        $this->valor_desconto = $valor_desconto;
+        $this->valor_total_tributos = $valor_total_tributos;
+        $this->data_emissao = $data_emissao;
+        $this->indicador_inscricao_estadual_destinatario = $indicador_inscricao_estadual_destinatario;
+        $this->modalidade_frete = $modalidade_frete;
+        $this->forma_pagamento = $forma_pagamento;
+        $this->tipo_documento = $tipo_documento;
+        $this->finalidade_emissao = $finalidade_emissao;
+        $this->local_destino = $local_destino;
+        $this->consumidor_final = $consumidor_final;
+        $this->presenca_comprador = $presenca_comprador;
+        $this->natureza_operacao = $natureza_operacao;
+        $this->icms_base_calculo = $icms_base_calculo;
+        $this->icms_valor_total = $icms_valor_total;
+        $this->valor_outras_despesas = $valor_outras_despesas;
+        $this->valor_seguro = $valor_seguro;
+        $this->valor_frete = $valor_frete;
+        $this->items = $items;
     }
 
     //set items
@@ -176,36 +98,29 @@ class Data
     public function toArray()
     {
         $data = [
-            'natureza_operacao' => $this->naturezaOperacao,
-            'data_emissao' => $this->dataEmissao,
-            'data_entrada_saida' => $this->dataEntradaSaida,
-            'tipo_documento' => $this->tipoDocumento,
-            'finalidade_emissao' => $this->finalidadeEmissao,
-            'cnpj_emitente' => $this->cnpjEmitente,
-            'nome_emitente' => $this->nomeEmitente,
-            'nome_fantasia_emitente' => $this->nomeFantasiaEmitente,
-            'logradouro_emitente' => $this->logradouroEmitente,
-            'numero_emitente' => $this->numeroEmitente,
-            'bairro_emitente' => $this->bairroEmitente,
-            'municipio_emitente' => $this->municipioEmitente,
-            'uf_emitente' => $this->ufEmitente,
-            'cep_emitente' => $this->cepEmitente,
-            'inscricao_estadual_emitente' => $this->inscricaoEstadualEmitente,
-            'nome_destinatario' => $this->nomeDestinatario,
-            'cpf_destinatario' => $this->cpfDestinatario,
-            'telefone_destinatario' => $this->telefoneDestinatario,
-            'logradouro_destinatario' => $this->logradouroDestinatario,
-            'numero_destinatario' => $this->numeroDestinatario,
-            'bairro_destinatario' => $this->bairroDestinatario,
-            'municipio_destinatario' => $this->municipioDestinatario,
-            'uf_destinatario' => $this->ufDestinatario,
-            'pais_destinatario' => $this->paisDestinatario,
-            'cep_destinatario' => $this->cepDestinatario,
-            'valor_frete' => $this->valorFrete,
-            'valor_seguro' => $this->valorSeguro,
-            'valor_total' => $this->valorTotal,
-            'valor_produtos' => $this->valorProdutos,
-            'modalidade_frete' => $this->modalidadeFrete,
+            'cnpj_emitente' => $this->cnpj_emitente,
+            'cpf_destinatario' => $this->cpf_destinatario,
+            'nome_destinatario' => $this->nome_destinatario,
+            'valor_produtos' => $this->valor_produtos,
+            'valor_total' => $this->valor_total,
+            'valor_troco' => $this->valor_troco,
+            'valor_desconto' => $this->valor_desconto,
+            'valor_total_tributos' => $this->valor_total_tributos,
+            'data_emissao' => $this->data_emissao,
+            'indicador_inscricao_estadual_destinatario' => $this->indicador_inscricao_estadual_destinatario,
+            'modalidade_frete' => $this->modalidade_frete,
+            'forma_pagamento' => $this->forma_pagamento,
+            'tipo_documento' => $this->tipo_documento,
+            'finalidade_emissao' => $this->finalidade_emissao,
+            'local_destino' => $this->local_destino,
+            'consumidor_final' => $this->consumidor_final,
+            'presenca_comprador' => $this->presenca_comprador,
+            'natureza_operacao' => $this->natureza_operacao,
+            'icms_base_calculo' => $this->icms_base_calculo,
+            'icms_valor_total' => $this->icms_valor_total,
+            'valor_outras_despesas' => $this->valor_outras_despesas,
+            'valor_seguro' => $this->valor_seguro,
+            'valor_frete' => $this->valor_frete,
         ];
 
         $data['items'] = [];
