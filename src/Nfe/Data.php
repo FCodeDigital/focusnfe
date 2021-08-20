@@ -54,22 +54,12 @@ class Data
     public array $items;
 
     public function __construct(
-        ?string $naturezaOperacao,
-        ?string $formaPagamento,
-        ?string $dataEmissao, //"2021-04-07T14:46:01-03:00"
-        ?string $dataEntradaSaida = null, //"2021-04-07T14:46:01-03:00"
-        ?string $tipoDocumento,
-        ?string $finalidadeEmissao = null,
-        ?string $cnpjEmitente = null,
-        ?string $nomeEmitente = null,
-        ?string $nomeFantasiaEmitente = null,
-        ?string $logradouroEmitente = null,
-        ?string $numeroEmitente = null,
-        ?string $bairroEmitente = null,
-        ?string $municipioEmitente = null,
-        ?string $ufEmitente = null,
-        ?string $cepEmitente = null,
-        ?string $inscricaoEstadualEmitente = null,
+
+    ) {
+
+    }
+
+    public function setDestinatario(
         ?string $nomeDestinatario = null,
         ?string $cpfDestinatario = null,
         ?string $telefoneDestinatario = null,
@@ -80,44 +70,10 @@ class Data
         ?string $ufDestinatario = null,
         ?string $paisDestinatario = null,
         ?string $cepDestinatario = null,
-        ?string $valorFrete = null,
-        ?string $valorSeguro = null,
-        ?string $valorTotal = null,
-        ?string $valorDesconto = null,
-        ?string $valorProdutos = null,
-        ?string $modalidadeFrete = null,
-        ?string $localDestino = null,
-        ?string $consumidorFinal = null,
-        ?string $presencaComprador = null,
-        ?string $regimeTributarioEmitente = null,
         ?string $inscricaoEstadualDestinatario = null,
         ?string $indicadorInscricaoEstadualDestinatario = null
-    ) {
-
-        //Validação de tipo de documento
-
-        if(!($tipoDocumento >= 0 && $tipoDocumento <= 1)) {
-            throw new \InvalidArgumentException('Tipo de documento inválido. Deve ser 0 ou 1');
-        }
-
-        //validação de local
-
-        $this->naturezaOperacao = $naturezaOperacao;
-        $this->formaPagamento = $formaPagamento;
-        $this->dataEmissao = $dataEmissao;
-        $this->dataEntradaSaida = $dataEntradaSaida;
-        $this->tipoDocumento = $tipoDocumento;
-        $this->finalidadeEmissao = $finalidadeEmissao;
-        $this->cnpjEmitente = $cnpjEmitente;
-        $this->nomeEmitente = $nomeEmitente;
-        $this->nomeFantasiaEmitente = $nomeFantasiaEmitente;
-        $this->logradouroEmitente = $logradouroEmitente;
-        $this->numeroEmitente = $numeroEmitente;
-        $this->bairroEmitente = $bairroEmitente;
-        $this->municipioEmitente = $municipioEmitente;
-        $this->ufEmitente = $ufEmitente;
-        $this->cepEmitente = $cepEmitente;
-        $this->inscricaoEstadualEmitente = $inscricaoEstadualEmitente;
+    )
+    {
         $this->nomeDestinatario = $nomeDestinatario;
         $this->cpfDestinatario = $cpfDestinatario;
         $this->telefoneDestinatario = $telefoneDestinatario;
@@ -128,6 +84,61 @@ class Data
         $this->ufDestinatario = $ufDestinatario;
         $this->paisDestinatario = $paisDestinatario;
         $this->cepDestinatario = $cepDestinatario;
+        $this->inscricaoEstadualDestinatario = $inscricaoEstadualDestinatario;
+        $this->indicadorInscricaoEstadualDestinatario = $indicadorInscricaoEstadualDestinatario;
+    }
+
+    public function setEmitente(
+        ?string $cnpjEmitente = null,
+        ?string $nomeEmitente = null,
+        ?string $nomeFantasiaEmitente = null,
+        ?string $logradouroEmitente = null,
+        ?string $numeroEmitente = null,
+        ?string $bairroEmitente = null,
+        ?string $municipioEmitente = null,
+        ?string $ufEmitente = null,
+        ?string $cepEmitente = null,
+        ?string $inscricaoEstadualEmitente = null,
+        ?string $regimeTributarioEmitente = null
+    )
+    {
+        $this->cnpjEmitente = $cnpjEmitente;
+        $this->nomeEmitente = $nomeEmitente;
+        $this->nomeFantasiaEmitente = $nomeFantasiaEmitente;
+        $this->logradouroEmitente = $logradouroEmitente;
+        $this->numeroEmitente = $numeroEmitente;
+        $this->bairroEmitente = $bairroEmitente;
+        $this->municipioEmitente = $municipioEmitente;
+        $this->ufEmitente = $ufEmitente;
+        $this->cepEmitente = $cepEmitente;
+        $this->inscricaoEstadualEmitente = $inscricaoEstadualEmitente;
+        $this->regimeTributarioEmitente = $regimeTributarioEmitente;
+    }
+
+    public function setDados(
+        ?string $naturezaOperacao,
+        ?string $formaPagamento,
+        ?string $dataEmissao, //"2021-04-07T14:46:01-03:00"
+        ?string $dataEntradaSaida = null, //"2021-04-07T14:46:01-03:00"
+        ?string $tipoDocumento,
+        ?string $finalidadeEmissao = null,
+        ?string $valorFrete = null,
+        ?string $valorSeguro = null,
+        ?string $valorTotal = null,
+        ?string $valorDesconto = null,
+        ?string $valorProdutos = null,
+        ?string $modalidadeFrete = null,
+        ?string $localDestino = null,
+        ?string $consumidorFinal = null,
+        ?string $presencaComprador = null
+    )
+    {
+        $this->naturezaOperacao = $naturezaOperacao;
+        $this->formaPagamento = $formaPagamento;
+        $this->dataEmissao = $dataEmissao;
+        $this->dataEntradaSaida = $dataEntradaSaida;
+        $this->tipoDocumento = $tipoDocumento;
+        $this->finalidadeEmissao = $finalidadeEmissao;
         $this->valorFrete = $valorFrete;
         $this->valorSeguro = $valorSeguro;
         $this->valorTotal = $valorTotal;
@@ -136,11 +147,7 @@ class Data
         $this->modalidadeFrete = $modalidadeFrete;
         $this->localDestino = $localDestino;
         $this->consumidorFinal = $consumidorFinal;
-        $this->regimeTributarioEmitente = $regimeTributarioEmitente;
         $this->presencaComprador = $presencaComprador;
-        $this->inscricaoEstadualDestinatario = $inscricaoEstadualDestinatario;
-        $this->indicadorInscricaoEstadualDestinatario = $indicadorInscricaoEstadualDestinatario;
-
     }
 
     //set items
