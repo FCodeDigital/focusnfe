@@ -77,6 +77,7 @@ class FocusNfe
 
     protected function callPost(string $url, array $params)
     {
+        // echo '<pre>';die(var_dump($url, json_encode($params)));
         $ch = curl_init();
 
         if($this->environment == 'testing'){

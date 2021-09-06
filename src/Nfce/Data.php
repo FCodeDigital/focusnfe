@@ -4,86 +4,122 @@ namespace FCodeDigital\FocusNfe\Nfce;
 
 class Data
 {
+    public ?string $naturezaOperacao;
+    public ?string $dataEmissao;
 
-    public ?string $cnpj_emitente = null;
-    public ?string $cpf_destinatario = null;
-    public ?string $nome_destinatario = null;
-    public ?float $valor_produtos = null;
-    public ?float $valor_total = null;
-    public ?float $valor_troco = null;
-    public ?float $valor_desconto = null;
-    public ?float $valor_total_tributos = null;
-    public ?string $data_emissao = null;
-    public ?string $indicador_inscricao_estadual_destinatario = null;
-    public ?string $modalidade_frete = null;
-    public ?string $forma_pagamento = null;
-    public ?string $tipo_documento = null;
-    public ?string $finalidade_emissao = null;
-    public ?string $local_destino = null;
-    public ?string $consumidor_final = null;
-    public ?string $presenca_comprador = null;
-    public ?string $natureza_operacao = null;
-    public ?float $icms_base_calculo = null;
-    public ?float $icms_valor_total = null;
-    public ?float $valor_outras_despesas = null;
-    public ?float $valor_seguro = null;
-    public ?float $valor_frete = null;
-    public array $items;
+    public ?string $localDestino;
+    public ?string $presencaComprador;
+
+    //Emitente
+    public ?string $cnpjEmitente;
+    public ?string $nomeEmitente;
+    public ?string $nomeFantasiaEmitente;
+    public ?string $logradouroEmitente;
+    public ?string $numeroEmitente;
+    public ?string $bairroEmitente;
+    public ?string $municipioEmitente;
+    public ?string $ufEmitente;
+    public ?string $cepEmitente;
+    public ?string $inscricaoEstadualEmitente;
+    public ?string $regimeTributarioEmitente;
+
+    //Destinatario
+    public ?string $nomeDestinatario = null;
+    public ?string $cpfDestinatario = null;
+    public ?string $cnpjDestinatario = null;
+    public ?string $telefoneDestinatario = null;
+    public ?string $logradouroDestinatario = null;
+    public ?string $numeroDestinatario = null;
+    public ?string $bairroDestinatario = null;
+    public ?string $municipioDestinatario = null;
+    public ?string $ufDestinatario = null;
+    public ?string $paisDestinatario = null;
+    public ?string $cepDestinatario = null;
+    public ?string $indicadorInscricaoEstadualDestinatario = null;
+
+    public ?string $modalidadeFrete = '9';
+    public array $items = [];
+    public array $formas_pagamento = [];
 
     public function __construct(
-        ?string $cnpj_emitente = null,
-        ?string $cpf_destinatario = null,
-        ?string $nome_destinatario = null,
-        ?float $valor_produtos = null,
-        ?float $valor_total = null,
-        ?float $valor_troco = null,
-        ?float $valor_desconto = null,
-        ?float $valor_total_tributos = null,
-        ?string $data_emissao = null,
-        ?string $indicador_inscricao_estadual_destinatario = null,
-        ?string $modalidade_frete = null,
-        ?string $forma_pagamento = null,
-        ?string $tipo_documento = null,
-        ?string $finalidade_emissao = null,
-        ?string $local_destino = null,
-        ?string $consumidor_final = null,
-        ?string $presenca_comprador = null,
-        ?string $natureza_operacao = null,
-        ?float $icms_base_calculo = null,
-        ?float $icms_valor_total = null,
-        ?float $valor_outras_despesas = null,
-        ?float $valor_seguro = null,
-        ?float $valor_frete = null,
-        ?array $items = []
+
     ) {
-        $this->cnpj_emitente = $cnpj_emitente;
-        $this->cpf_destinatario = $cpf_destinatario;
-        $this->nome_destinatario = $nome_destinatario;
-        $this->valor_produtos = $valor_produtos;
-        $this->valor_total = $valor_total;
-        $this->valor_troco = $valor_troco;
-        $this->valor_desconto = $valor_desconto;
-        $this->valor_total_tributos = $valor_total_tributos;
-        $this->data_emissao = $data_emissao;
-        $this->indicador_inscricao_estadual_destinatario = $indicador_inscricao_estadual_destinatario;
-        $this->modalidade_frete = $modalidade_frete;
-        $this->forma_pagamento = $forma_pagamento;
-        $this->tipo_documento = $tipo_documento;
-        $this->finalidade_emissao = $finalidade_emissao;
-        $this->local_destino = $local_destino;
-        $this->consumidor_final = $consumidor_final;
-        $this->presenca_comprador = $presenca_comprador;
-        $this->natureza_operacao = $natureza_operacao;
-        $this->icms_base_calculo = $icms_base_calculo;
-        $this->icms_valor_total = $icms_valor_total;
-        $this->valor_outras_despesas = $valor_outras_despesas;
-        $this->valor_seguro = $valor_seguro;
-        $this->valor_frete = $valor_frete;
-        $this->items = $items;
+
+    }
+
+    public function setDestinatario(
+        ?string $nomeDestinatario = null,
+        ?string $cpfDestinatario = null,
+        ?string $cnpjDestinatario = null,
+        ?string $telefoneDestinatario = null,
+        ?string $logradouroDestinatario = null,
+        ?string $numeroDestinatario = null,
+        ?string $bairroDestinatario = null,
+        ?string $municipioDestinatario = null,
+        ?string $ufDestinatario = null,
+        ?string $paisDestinatario = null,
+        ?string $cepDestinatario = null,
+        ?string $indicadorInscricaoEstadualDestinatario = null
+    )
+    {
+        $this->nomeDestinatario = $nomeDestinatario;
+        $this->cpfDestinatario = $cpfDestinatario;
+        $this->cnpjDestinatario = $cnpjDestinatario;
+        $this->telefoneDestinatario = $telefoneDestinatario;
+        $this->logradouroDestinatario = $logradouroDestinatario;
+        $this->numeroDestinatario = $numeroDestinatario;
+        $this->bairroDestinatario = $bairroDestinatario;
+        $this->municipioDestinatario = $municipioDestinatario;
+        $this->ufDestinatario = $ufDestinatario;
+        $this->paisDestinatario = $paisDestinatario;
+        $this->cepDestinatario = $cepDestinatario;
+        $this->indicadorInscricaoEstadualDestinatario = $indicadorInscricaoEstadualDestinatario;
+    }
+
+    public function setEmitente(
+        ?string $cnpjEmitente = null,
+        ?string $nomeEmitente = null,
+        ?string $nomeFantasiaEmitente = null,
+        ?string $logradouroEmitente = null,
+        ?string $numeroEmitente = null,
+        ?string $bairroEmitente = null,
+        ?string $municipioEmitente = null,
+        ?string $ufEmitente = null,
+        ?string $cepEmitente = null,
+        ?string $inscricaoEstadualEmitente = null,
+        ?string $regimeTributarioEmitente = null
+    )
+    {
+        $this->cnpjEmitente = $cnpjEmitente;
+        $this->nomeEmitente = $nomeEmitente;
+        $this->nomeFantasiaEmitente = $nomeFantasiaEmitente;
+        $this->logradouroEmitente = $logradouroEmitente;
+        $this->numeroEmitente = $numeroEmitente;
+        $this->bairroEmitente = $bairroEmitente;
+        $this->municipioEmitente = $municipioEmitente;
+        $this->ufEmitente = $ufEmitente;
+        $this->cepEmitente = $cepEmitente;
+        $this->inscricaoEstadualEmitente = $inscricaoEstadualEmitente;
+        $this->regimeTributarioEmitente = $regimeTributarioEmitente;
+    }
+
+    public function setDados(
+        ?string $naturezaOperacao,
+        ?string $dataEmissao, //"2021-04-07T14:46:01-03:00"
+        ?string $modalidadeFrete = null,
+        ?string $localDestino = null,
+        ?string $presencaComprador = null
+    )
+    {
+        $this->naturezaOperacao = $naturezaOperacao;
+        $this->dataEmissao = $dataEmissao;
+        $this->modalidadeFrete = $modalidadeFrete;
+        $this->localDestino = $localDestino;
+        $this->presencaComprador = $presencaComprador;
     }
 
     //set items
-    public function addItem(\FCodeDigital\FocusNfe\Nfe\Items $item)
+    public function addItem(\FCodeDigital\FocusNfe\Nfce\Items $item)
     {
         $this->items[] = $item;
     }
@@ -94,39 +130,70 @@ class Data
         return $this->items;
     }
 
+    //set items
+    public function addFormaPagamento(\FCodeDigital\FocusNfe\Nfce\FormaPagamento $forma_pagamento)
+    {
+        $this->forma_pagamento[] = $forma_pagamento;
+    }
+
+    //get items
+    public function getFormaPagamento()
+    {
+        return $this->forma_pagamento;
+    }
+
     //to array
     public function toArray()
     {
         $data = [
-            'cnpj_emitente' => $this->cnpj_emitente,
-            'cpf_destinatario' => $this->cpf_destinatario,
-            'nome_destinatario' => $this->nome_destinatario,
-            'valor_produtos' => $this->valor_produtos,
-            'valor_total' => $this->valor_total,
-            'valor_troco' => $this->valor_troco,
-            'valor_desconto' => $this->valor_desconto,
-            'valor_total_tributos' => $this->valor_total_tributos,
-            'data_emissao' => $this->data_emissao,
-            'indicador_inscricao_estadual_destinatario' => $this->indicador_inscricao_estadual_destinatario,
-            'modalidade_frete' => $this->modalidade_frete,
-            'forma_pagamento' => $this->forma_pagamento,
-            'tipo_documento' => $this->tipo_documento,
-            'finalidade_emissao' => $this->finalidade_emissao,
-            'local_destino' => $this->local_destino,
-            'consumidor_final' => $this->consumidor_final,
-            'presenca_comprador' => $this->presenca_comprador,
-            'natureza_operacao' => $this->natureza_operacao,
-            'icms_base_calculo' => $this->icms_base_calculo,
-            'icms_valor_total' => $this->icms_valor_total,
-            'valor_outras_despesas' => $this->valor_outras_despesas,
-            'valor_seguro' => $this->valor_seguro,
-            'valor_frete' => $this->valor_frete,
+            'natureza_operacao' => $this->naturezaOperacao,
+            'data_emissao' => $this->dataEmissao,
+            'finalidade_emissao' => $this->finalidadeEmissao,
+            'cnpj_emitente' => $this->cnpjEmitente,
+            'nome_emitente' => $this->nomeEmitente,
+            'nome_fantasia_emitente' => $this->nomeFantasiaEmitente,
+            'logradouro_emitente' => $this->logradouroEmitente,
+            'numero_emitente' => $this->numeroEmitente,
+            'bairro_emitente' => $this->bairroEmitente,
+            'municipio_emitente' => $this->municipioEmitente,
+            'uf_emitente' => $this->ufEmitente,
+            'cep_emitente' => $this->cepEmitente,
+            'inscricao_estadual_emitente' => $this->inscricaoEstadualEmitente,
+            'nome_destinatario' => $this->nomeDestinatario,
+            'cpf_destinatario' => $this->cpfDestinatario,
+            'cnpj_destinatario' => $this->cnpjDestinatario,
+            'telefone_destinatario' => $this->telefoneDestinatario,
+            'logradouro_destinatario' => $this->logradouroDestinatario,
+            'numero_destinatario' => $this->numeroDestinatario,
+            'bairro_destinatario' => $this->bairroDestinatario,
+            'municipio_destinatario' => $this->municipioDestinatario,
+            'uf_destinatario' => $this->ufDestinatario,
+            'pais_destinatario' => $this->paisDestinatario,
+            'cep_destinatario' => $this->cepDestinatario,
+            'modalidade_frete' => $this->modalidadeFrete,
+            'local_destino' => $this->localDestino,
+            'consumidor_final' => $this->consumidorFinal,
+            'regime_tributario_emitente' => $this->regimeTributarioEmitente,
+            'presenca_comprador' => $this->presencaComprador,
+            'indicador_inscricao_estadual_destinatario' => $this->indicadorInscricaoEstadualDestinatario,
         ];
+
+        //limpa null do array
+        $data = array_filter($data, function ($value) {
+            return ($value !== null && $value !== false);
+        });
 
         $data['items'] = [];
         if($this->items) {
             foreach ($this->items as $item) {
                 $data['items'][] = $item->toArray();
+            }
+        }
+
+        $data['formas_pagamento'] = [];
+        if($this->forma_pagamento) {
+            foreach ($this->forma_pagamento as $formapag) {
+                $data['formas_pagamento'][] = $formapag->toArray();
             }
         }
 

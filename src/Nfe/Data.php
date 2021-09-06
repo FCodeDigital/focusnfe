@@ -192,11 +192,11 @@ class Data
             'uf_destinatario' => $this->ufDestinatario,
             'pais_destinatario' => $this->paisDestinatario,
             'cep_destinatario' => $this->cepDestinatario,
-            'valor_frete' => $this->valorFrete,
-            'valor_seguro' => $this->valorSeguro,
-            'valor_total' => $this->valorTotal,
-            'valor_desconto' => $this->valorDesconto,
-            'valor_produtos' => $this->valorProdutos,
+            'valor_frete' => str_replace(' ', '', str_replace(',', '.', $this->valorFrete)),
+            'valor_seguro' => str_replace(' ', '', str_replace(',', '.', $this->valorSeguro)),
+            'valor_total' => str_replace(' ', '', str_replace(',', '.', $this->valorTotal)),
+            'valor_desconto' => str_replace(' ', '', str_replace(',', '.', $this->valorDesconto)),
+            'valor_produtos' => str_replace(' ', '', str_replace(',', '.', $this->valorProdutos)),
             'modalidade_frete' => $this->modalidadeFrete,
             'local_destino' => $this->localDestino,
             'consumidor_final' => $this->consumidorFinal,
@@ -206,13 +206,18 @@ class Data
             'indicador_inscricao_estadual_destinatario' => $this->indicadorInscricaoEstadualDestinatario,
         ];
 
+        //limpa null do array
+        $data = array_filter($data, function ($value) {
+            return $value !== null;
+        });
+
         $data['items'] = [];
         if($this->items) {
             foreach ($this->items as $item) {
                 $data['items'][] = $item->toArray();
             }
         }
-
+// echo '<pre>';die(var_dump($data));
         return $data;
     }
 

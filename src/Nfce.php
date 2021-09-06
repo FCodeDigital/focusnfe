@@ -20,7 +20,7 @@ class Nfce extends FocusNfe
     //enviarNfce
     public function enviar(string $reference, \FCodeDigital\FocusNfe\Nfce\Data $params)
     {
-        return $this->callPost("/v2/nfe?ref=" . $reference, $params->toArray());
+        return $this->callPost("/v2/nfce?ref=" . $reference, $params->toArray());
     }
 
     //consultarNfce

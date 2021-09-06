@@ -43,6 +43,7 @@ class Items
     public ?string $icms_situacao_tributaria;
     public ?string $pis_situacao_tributaria;
     public ?string $cofins_situacao_tributaria;
+    public int $icms_modalidade_base_calculo = 3;
 
 
 
@@ -73,13 +74,13 @@ class Items
         $this->cfop = $cfop;
         $this->quantidade_comercial = $quantidade_comercial;
         $this->quantidade_tributavel = $quantidade_tributavel;
-        $this->valor_unitario_comercial = $valor_unitario_comercial;
-        $this->valor_unitario_tributavel = $valor_unitario_tributavel;
+        $this->valor_unitario_comercial = str_replace(' ', '', str_replace(',', '.', $valor_unitario_comercial));
+        $this->valor_unitario_tributavel = str_replace(' ', '', str_replace(',', '.', $valor_unitario_tributavel));
         $this->unidade_comercial = $unidade_comercial;
         $this->unidade_tributavel = $unidade_tributavel;
-        $this->valor_frete = $valor_frete;
-        $this->valor_bruto = $valor_bruto;
-        $this->valor_desconto = $valor_desconto;
+        $this->valor_frete = str_replace(' ', '', str_replace(',', '.', $valor_frete));
+        $this->valor_bruto = str_replace(' ', '', str_replace(',', '.', $valor_bruto));
+        $this->valor_desconto = str_replace(' ', '', str_replace(',', '.', $valor_desconto));
         $this->codigo_ncm = $codigo_ncm;
         $this->inclui_no_total = $inclui_no_total;
         $this->icms_origem = $icms_origem;
@@ -90,7 +91,7 @@ class Items
 
     public function toArray()
     {
-        return [
+        $toReturn = [
             'numero_item' => $this->numero_item,
             'codigo_produto' => $this->codigo_produto,
             'descricao' => $this->descricao,
@@ -110,7 +111,15 @@ class Items
             'icms_situacao_tributaria' => $this->icms_situacao_tributaria,
             'pis_situacao_tributaria' => $this->pis_situacao_tributaria,
             'cofins_situacao_tributaria' => $this->cofins_situacao_tributaria,
+            'icms_modalidade_base_calculo' => $this->icms_modalidade_base_calculo
         ];
+
+        //limpa null do array
+        $toReturn = array_filter($toReturn, function ($value) {
+            return $value !== null;
+        });
+
+        return $toReturn;
     }
 
     public function toJson()
