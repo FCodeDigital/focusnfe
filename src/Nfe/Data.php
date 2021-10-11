@@ -30,18 +30,18 @@ class Data
     public ?string $regimeTributarioEmitente;
 
     //Destinatario
-    public ?string $nomeDestinatario;
-    public ?string $cpfDestinatario;
-    public ?string $telefoneDestinatario;
-    public ?string $logradouroDestinatario;
-    public ?string $numeroDestinatario;
-    public ?string $bairroDestinatario;
-    public ?string $municipioDestinatario;
-    public ?string $ufDestinatario;
-    public ?string $paisDestinatario;
-    public ?string $cepDestinatario;
-    public ?string $inscricaoEstadualDestinatario;
-    public ?string $indicadorInscricaoEstadualDestinatario;
+    public ?string $nomeDestinatario = null;
+    public ?string $cpfDestinatario = null;
+    public ?string $cnpjDestinatario = null;
+    public ?string $telefoneDestinatario = null;
+    public ?string $logradouroDestinatario = null;
+    public ?string $numeroDestinatario = null;
+    public ?string $bairroDestinatario = null;
+    public ?string $municipioDestinatario = null;
+    public ?string $ufDestinatario = null;
+    public ?string $paisDestinatario = null;
+    public ?string $cepDestinatario = null;
+    public ?string $indicadorInscricaoEstadualDestinatario = null;
 
 
 
@@ -53,6 +53,8 @@ class Data
     public ?string $modalidadeFrete;
     public array $items;
 
+    public array $formas_pagamento = [];
+
     public function __construct(
 
     ) {
@@ -62,6 +64,7 @@ class Data
     public function setDestinatario(
         ?string $nomeDestinatario = null,
         ?string $cpfDestinatario = null,
+        ?string $cnpjDestinatario = null,
         ?string $telefoneDestinatario = null,
         ?string $logradouroDestinatario = null,
         ?string $numeroDestinatario = null,
@@ -70,12 +73,12 @@ class Data
         ?string $ufDestinatario = null,
         ?string $paisDestinatario = null,
         ?string $cepDestinatario = null,
-        ?string $inscricaoEstadualDestinatario = null,
         ?string $indicadorInscricaoEstadualDestinatario = null
     )
     {
         $this->nomeDestinatario = $nomeDestinatario;
         $this->cpfDestinatario = $cpfDestinatario;
+        $this->cnpjDestinatario = $cnpjDestinatario;
         $this->telefoneDestinatario = $telefoneDestinatario;
         $this->logradouroDestinatario = $logradouroDestinatario;
         $this->numeroDestinatario = $numeroDestinatario;
@@ -84,7 +87,6 @@ class Data
         $this->ufDestinatario = $ufDestinatario;
         $this->paisDestinatario = $paisDestinatario;
         $this->cepDestinatario = $cepDestinatario;
-        $this->inscricaoEstadualDestinatario = $inscricaoEstadualDestinatario;
         $this->indicadorInscricaoEstadualDestinatario = $indicadorInscricaoEstadualDestinatario;
     }
 
@@ -117,7 +119,6 @@ class Data
 
     public function setDados(
         ?string $naturezaOperacao,
-        ?string $formaPagamento,
         ?string $dataEmissao, //"2021-04-07T14:46:01-03:00"
         ?string $dataEntradaSaida = null, //"2021-04-07T14:46:01-03:00"
         ?string $tipoDocumento,
@@ -134,7 +135,6 @@ class Data
     )
     {
         $this->naturezaOperacao = $naturezaOperacao;
-        $this->formaPagamento = $formaPagamento;
         $this->dataEmissao = $dataEmissao;
         $this->dataEntradaSaida = $dataEntradaSaida;
         $this->tipoDocumento = $tipoDocumento;
@@ -162,49 +162,168 @@ class Data
         return $this->items;
     }
 
+    public function addFormaPagamento(\FCodeDigital\FocusNfe\Nfe\FormaPagamento $forma_pagamento)
+    {
+        $this->forma_pagamento[] = $forma_pagamento;
+    }
+
+    //get items
+    public function getFormaPagamento()
+    {
+        return $this->forma_pagamento;
+    }
+
     //to array
     public function toArray()
     {
-        $data = [
-            'forma_pagamento' => $this->formaPagamento,
-            'natureza_operacao' => $this->naturezaOperacao,
-            'data_emissao' => $this->dataEmissao,
-            'data_entrada_saida' => $this->dataEntradaSaida,
-            'tipo_documento' => $this->tipoDocumento,
-            'finalidade_emissao' => $this->finalidadeEmissao,
-            'cnpj_emitente' => $this->cnpjEmitente,
-            'nome_emitente' => $this->nomeEmitente,
-            'nome_fantasia_emitente' => $this->nomeFantasiaEmitente,
-            'logradouro_emitente' => $this->logradouroEmitente,
-            'numero_emitente' => $this->numeroEmitente,
-            'bairro_emitente' => $this->bairroEmitente,
-            'municipio_emitente' => $this->municipioEmitente,
-            'uf_emitente' => $this->ufEmitente,
-            'cep_emitente' => $this->cepEmitente,
-            'inscricao_estadual_emitente' => $this->inscricaoEstadualEmitente,
-            'nome_destinatario' => $this->nomeDestinatario,
-            'cpf_destinatario' => $this->cpfDestinatario,
-            'telefone_destinatario' => $this->telefoneDestinatario,
-            'logradouro_destinatario' => $this->logradouroDestinatario,
-            'numero_destinatario' => $this->numeroDestinatario,
-            'bairro_destinatario' => $this->bairroDestinatario,
-            'municipio_destinatario' => $this->municipioDestinatario,
-            'uf_destinatario' => $this->ufDestinatario,
-            'pais_destinatario' => $this->paisDestinatario,
-            'cep_destinatario' => $this->cepDestinatario,
-            'valor_frete' => str_replace(' ', '', str_replace(',', '.', $this->valorFrete)),
-            'valor_seguro' => str_replace(' ', '', str_replace(',', '.', $this->valorSeguro)),
-            'valor_total' => str_replace(' ', '', str_replace(',', '.', $this->valorTotal)),
-            'valor_desconto' => str_replace(' ', '', str_replace(',', '.', $this->valorDesconto)),
-            'valor_produtos' => str_replace(' ', '', str_replace(',', '.', $this->valorProdutos)),
-            'modalidade_frete' => $this->modalidadeFrete,
-            'local_destino' => $this->localDestino,
-            'consumidor_final' => $this->consumidorFinal,
-            'regime_tributario_emitente' => $this->regimeTributarioEmitente,
-            'presenca_comprador' => $this->presencaComprador,
-            'inscricao_estadual_destinatario' => $this->inscricaoEstadualDestinatario,
-            'indicador_inscricao_estadual_destinatario' => $this->indicadorInscricaoEstadualDestinatario,
-        ];
+        $data = [];
+        if(isset($this->naturezaOperacao) && $this->naturezaOperacao){
+            $data['natureza_operacao'] = $this->naturezaOperacao;
+        }
+
+        if(isset($this->dataEmissao) && $this->dataEmissao){
+            $data['data_emissao'] = $this->dataEmissao;
+        }
+
+        if(isset($this->dataEntradaSaida) && $this->dataEntradaSaida){
+            $data['data_entrada_saida'] = $this->dataEntradaSaida;
+        }
+
+        if(isset($this->tipoDocumento) && $this->tipoDocumento){
+            $data['tipo_documento'] = $this->tipoDocumento;
+        }
+
+        if(isset($this->finalidadeEmissao) && $this->finalidadeEmissao){
+            $data['finalidade_emissao'] = $this->finalidadeEmissao;
+        }
+
+        if(isset($this->cnpjEmitente) && $this->cnpjEmitente){
+            $data['cnpj_emitente'] = $this->cnpjEmitente;
+        }
+
+        if(isset($this->nomeEmitente) && $this->nomeEmitente){
+            $data['nome_emitente'] = $this->nomeEmitente;
+        }
+
+        if(isset($this->nomeFantasiaEmitente) && $this->nomeFantasiaEmitente){
+            $data['nome_fantasia_emitente'] = $this->nomeFantasiaEmitente;
+        }
+
+        if(isset($this->logradouroEmitente) && $this->logradouroEmitente){
+            $data['logradouro_emitente'] = $this->logradouroEmitente;
+        }
+
+        if(isset($this->numeroEmitente) && $this->numeroEmitente){
+            $data['numero_emitente'] = $this->numeroEmitente;
+        }
+
+        if(isset($this->bairroEmitente) && $this->bairroEmitente){
+            $data['bairro_emitente'] = $this->bairroEmitente;
+        }
+
+        if(isset($this->municipioEmitente) && $this->municipioEmitente){
+            $data['municipio_emitente'] = $this->municipioEmitente;
+        }
+
+        if(isset($this->ufEmitente) && $this->ufEmitente){
+            $data['uf_emitente'] = $this->ufEmitente;
+        }
+
+        if(isset($this->cepEmitente) && $this->cepEmitente){
+            $data['cep_emitente'] = $this->cepEmitente;
+        }
+
+        if(isset($this->inscricaoEstadualEmitente) && $this->inscricaoEstadualEmitente){
+            $data['inscricao_estadual_emitente'] = $this->inscricaoEstadualEmitente;
+        }
+
+        if(isset($this->nomeDestinatario) && $this->nomeDestinatario){
+            $data['nome_destinatario'] = $this->nomeDestinatario;
+        }
+
+        if(isset($this->cpfDestinatario) && $this->cpfDestinatario){
+            $data['cpf_destinatario'] = $this->cpfDestinatario;
+        }
+
+        if(isset($this->telefoneDestinatario) && $this->telefoneDestinatario){
+            $data['telefone_destinatario'] = $this->telefoneDestinatario;
+        }
+
+        if(isset($this->logradouroDestinatario) && $this->logradouroDestinatario){
+            $data['logradouro_destinatario'] = $this->logradouroDestinatario;
+        }
+
+        if(isset($this->numeroDestinatario) && $this->numeroDestinatario){
+            $data['numero_destinatario'] = $this->numeroDestinatario;
+        }
+
+        if(isset($this->bairroDestinatario) && $this->bairroDestinatario){
+            $data['bairro_destinatario'] = $this->bairroDestinatario;
+        }
+
+        if(isset($this->municipioDestinatario) && $this->municipioDestinatario){
+            $data['municipio_destinatario'] = $this->municipioDestinatario;
+        }
+
+        if(isset($this->ufDestinatario) && $this->ufDestinatario){
+            $data['uf_destinatario'] = $this->ufDestinatario;
+        }
+
+        if(isset($this->paisDestinatario) && $this->paisDestinatario){
+            $data['pais_destinatario'] = $this->paisDestinatario;
+        }
+
+        if(isset($this->cepDestinatario) && $this->cepDestinatario){
+            $data['cep_destinatario'] = $this->cepDestinatario;
+        }
+
+        if(isset($this->valorFrete) && $this->valorFrete){
+            $data['valor_frete'] = str_replace(' ', '', str_replace(',', '.', $this->valorFrete));
+        }
+
+        if(isset($this->valorSeguro) && $this->valorSeguro){
+            $data['valor_seguro'] = str_replace(' ', '', str_replace(',', '.', $this->valorSeguro));
+        }
+
+        if(isset($this->valorTotal) && $this->valorTotal){
+            $data['valor_total'] = str_replace(' ', '', str_replace(',', '.', $this->valorTotal));
+        }
+
+        if(isset($this->valorDesconto) && $this->valorDesconto){
+            $data['valor_desconto'] = str_replace(' ', '', str_replace(',', '.', $this->valorDesconto));
+        }
+
+        if(isset($this->valorProdutos) && $this->valorProdutos){
+            $data['valor_produtos'] = str_replace(' ', '', str_replace(',', '.', $this->valorProdutos));
+        }
+
+        if(isset($this->modalidadeFrete) && $this->modalidadeFrete){
+            $data['modalidade_frete'] = $this->modalidadeFrete;
+        }
+
+        if(isset($this->localDestino) && $this->localDestino){
+            $data['local_destino'] = $this->localDestino;
+        }
+
+        if(isset($this->consumidorFinal) && $this->consumidorFinal){
+            $data['consumidor_final'] = $this->consumidorFinal;
+        }
+
+        if(isset($this->regimeTributarioEmitente) && $this->regimeTributarioEmitente){
+            $data['regime_tributario_emitente'] = $this->regimeTributarioEmitente;
+        }
+
+        if(isset($this->presencaComprador) && $this->presencaComprador){
+            $data['presenca_comprador'] = $this->presencaComprador;
+        }
+
+        if(isset($this->inscricaoEstadualDestinatario) && $this->inscricaoEstadualDestinatario){
+            $data['inscricao_estadual_destinatario'] = $this->inscricaoEstadualDestinatario;
+        }
+
+        if(isset($this->indicadorInscricaoEstadualDestinaterio) && $this->indicadorInscricaoEstadualDestinaterio){
+            $data['indicador_inscricao_estadual_destinatario'] = $this->indicadorInscricaoEstadualDestinaterio;
+        }
 
         //limpa null do array
         $data = array_filter($data, function ($value) {
@@ -217,7 +336,14 @@ class Data
                 $data['items'][] = $item->toArray();
             }
         }
-// echo '<pre>';die(var_dump($data));
+
+        $data['formas_pagamento'] = [];
+        if($this->forma_pagamento) {
+            foreach ($this->forma_pagamento as $formapag) {
+                $data['formas_pagamento'][] = $formapag->toArray();
+            }
+        }
+
         return $data;
     }
 

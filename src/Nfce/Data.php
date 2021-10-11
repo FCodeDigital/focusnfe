@@ -145,38 +145,159 @@ class Data
     //to array
     public function toArray()
     {
-        $data = [
-            'natureza_operacao' => $this->naturezaOperacao,
-            'data_emissao' => $this->dataEmissao,
-            'finalidade_emissao' => $this->finalidadeEmissao,
-            'cnpj_emitente' => $this->cnpjEmitente,
-            'nome_emitente' => $this->nomeEmitente,
-            'nome_fantasia_emitente' => $this->nomeFantasiaEmitente,
-            'logradouro_emitente' => $this->logradouroEmitente,
-            'numero_emitente' => $this->numeroEmitente,
-            'bairro_emitente' => $this->bairroEmitente,
-            'municipio_emitente' => $this->municipioEmitente,
-            'uf_emitente' => $this->ufEmitente,
-            'cep_emitente' => $this->cepEmitente,
-            'inscricao_estadual_emitente' => $this->inscricaoEstadualEmitente,
-            'nome_destinatario' => $this->nomeDestinatario,
-            'cpf_destinatario' => $this->cpfDestinatario,
-            'cnpj_destinatario' => $this->cnpjDestinatario,
-            'telefone_destinatario' => $this->telefoneDestinatario,
-            'logradouro_destinatario' => $this->logradouroDestinatario,
-            'numero_destinatario' => $this->numeroDestinatario,
-            'bairro_destinatario' => $this->bairroDestinatario,
-            'municipio_destinatario' => $this->municipioDestinatario,
-            'uf_destinatario' => $this->ufDestinatario,
-            'pais_destinatario' => $this->paisDestinatario,
-            'cep_destinatario' => $this->cepDestinatario,
-            'modalidade_frete' => $this->modalidadeFrete,
-            'local_destino' => $this->localDestino,
-            'consumidor_final' => $this->consumidorFinal,
-            'regime_tributario_emitente' => $this->regimeTributarioEmitente,
-            'presenca_comprador' => $this->presencaComprador,
-            'indicador_inscricao_estadual_destinatario' => $this->indicadorInscricaoEstadualDestinatario,
-        ];
+        // $data = [
+        //     'natureza_operacao' => $this->naturezaOperacao,
+        //     'data_emissao' => $this->dataEmissao,
+        //     'finalidade_emissao' => $this->finalidadeEmissao,
+        //     'cnpj_emitente' => $this->cnpjEmitente,
+        //     'nome_emitente' => $this->nomeEmitente,
+        //     'nome_fantasia_emitente' => $this->nomeFantasiaEmitente,
+        //     'logradouro_emitente' => $this->logradouroEmitente,
+        //     'numero_emitente' => $this->numeroEmitente,
+        //     'bairro_emitente' => $this->bairroEmitente,
+        //     'municipio_emitente' => $this->municipioEmitente,
+        //     'uf_emitente' => $this->ufEmitente,
+        //     'cep_emitente' => $this->cepEmitente,
+        //     'inscricao_estadual_emitente' => $this->inscricaoEstadualEmitente,
+        //     'nome_destinatario' => $this->nomeDestinatario,
+        //     'cpf_destinatario' => $this->cpfDestinatario,
+        //     'cnpj_destinatario' => $this->cnpjDestinatario,
+        //     'telefone_destinatario' => $this->telefoneDestinatario,
+        //     'logradouro_destinatario' => $this->logradouroDestinatario,
+        //     'numero_destinatario' => $this->numeroDestinatario,
+        //     'bairro_destinatario' => $this->bairroDestinatario,
+        //     'municipio_destinatario' => $this->municipioDestinatario,
+        //     'uf_destinatario' => $this->ufDestinatario,
+        //     'pais_destinatario' => $this->paisDestinatario,
+        //     'cep_destinatario' => $this->cepDestinatario,
+        //     'modalidade_frete' => $this->modalidadeFrete,
+        //     'local_destino' => $this->localDestino,
+        //     'consumidor_final' => $this->consumidorFinal,
+        //     'regime_tributario_emitente' => $this->regimeTributarioEmitente,
+        //     'presenca_comprador' => $this->presencaComprador,
+        //     'indicador_inscricao_estadual_destinatario' => $this->indicadorInscricaoEstadualDestinatario,
+        // ];
+
+        $data = [];
+        if(isset($this->naturezaOperacao) && $this->naturezaOperacao){
+            $data['natureza_operacao'] = $this->naturezaOperacao;
+        }
+
+        if(isset($this->dataEmissao) && $this->dataEmissao){
+            $data['data_emissao'] = $this->dataEmissao;
+        }
+
+        if(isset($this->finalidadeEmissao) && $this->finalidadeEmissao){
+            $data['finalidade_emissao'] = $this->finalidadeEmissao;
+        }
+
+        if(isset($this->cnpjEmitente) && $this->cnpjEmitente){
+            $data['cnpj_emitente'] = $this->cnpjEmitente;
+        }
+
+        if(isset($this->nomeEmitente) && $this->nomeEmitente){
+            $data['nome_emitente'] = $this->nomeEmitente;
+        }
+
+        if(isset($this->nomeFantasiaEmitente) && $this->nomeFantasiaEmitente){
+            $data['nome_fantasia_emitente'] = $this->nomeFantasiaEmitente;
+        }
+
+        if(isset($this->logradouroEmitente) && $this->logradouroEmitente){
+            $data['logradouro_emitente'] = $this->logradouroEmitente;
+        }
+
+        if(isset($this->numeroEmitente) && $this->numeroEmitente){
+            $data['numero_emitente'] = $this->numeroEmitente;
+        }
+
+        if(isset($this->bairroEmitente) && $this->bairroEmitente){
+            $data['bairro_emitente'] = $this->bairroEmitente;
+        }
+
+        if(isset($this->municipioEmitente) && $this->municipioEmitente){
+            $data['municipio_emitente'] = $this->municipioEmitente;
+        }
+
+        if(isset($this->ufEmitente) && $this->ufEmitente){
+            $data['uf_emitente'] = $this->ufEmitente;
+        }
+
+        if(isset($this->cepEmitente) && $this->cepEmitente){
+            $data['cep_emitente'] = $this->cepEmitente;
+        }
+
+        if(isset($this->inscricaoEstadualEmitente) && $this->inscricaoEstadualEmitente){
+            $data['inscricao_estadual_emitente'] = $this->inscricaoEstadualEmitente;
+        }
+
+        if(isset($this->nomeDestinatario) && $this->nomeDestinatario){
+            $data['nome_destinatario'] = $this->nomeDestinatario;
+        }
+
+        if(isset($this->cpfDestinatario) && $this->cpfDestinatario){
+            $data['cpf_destinatario'] = $this->cpfDestinatario;
+        }
+
+        if(isset($this->cnpjDestinatario) && $this->cnpjDestinatario){
+            $data['cnpj_destinatario'] = $this->cnpjDestinatario;
+        }
+
+        if(isset($this->telefoneDestinatario) && $this->telefoneDestinatario){
+            $data['telefone_destinatario'] = $this->telefoneDestinatario;
+        }
+
+        if(isset($this->logradouroDestinatario) && $this->logradouroDestinatario){
+            $data['logradouro_destinatario'] = $this->logradouroDestinatario;
+        }
+
+        if(isset($this->numeroDestinatario) && $this->numeroDestinatario){
+            $data['numero_destinatario'] = $this->numeroDestinatario;
+        }
+
+        if(isset($this->bairroDestinatario) && $this->bairroDestinatario){
+            $data['bairro_destinatario'] = $this->bairroDestinatario;
+        }
+
+        if(isset($this->municipioDestinatario) && $this->municipioDestinatario){
+            $data['municipio_destinatario'] = $this->municipioDestinatario;
+        }
+
+        if(isset($this->ufDestinatario) && $this->ufDestinatario){
+            $data['uf_destinatario'] = $this->ufDestinatario;
+        }
+
+        if(isset($this->paisDestinatario) && $this->paisDestinatario){
+            $data['pais_destinatario'] = $this->paisDestinatario;
+        }
+
+        if(isset($this->cepDestinatario) && $this->cepDestinatario){
+            $data['cep_destinatario'] = $this->cepDestinatario;
+        }
+
+        if(isset($this->modalidadeFrete) && $this->modalidadeFrete){
+            $data['modalidade_frete'] = $this->modalidadeFrete;
+        }
+
+        if(isset($this->localDestino) && $this->localDestino){
+            $data['local_destino'] = $this->localDestino;
+        }
+
+        if(isset($this->consumidorFinal) && $this->consumidorFinal){
+            $data['consumidor_final'] = $this->consumidorFinal;
+        }
+
+        if(isset($this->regimeTributarioEmitente) && $this->regimeTributarioEmitente){
+            $data['regime_tributario_emitente'] = $this->regimeTributarioEmitente;
+        }
+
+        if(isset($this->presencaComprador) && $this->presencaComprador){
+            $data['presenca_comprador'] = $this->presencaComprador;
+        }
+
+        if(isset($this->indicadorInscricaoEstadualDestinatario) && $this->indicadorInscricaoEstadualDestinatario){
+            $data['indicador_inscricao_estadual_destinatario'] = $this->indicadorInscricaoEstadualDestinatario;
+        }
 
         //limpa null do array
         $data = array_filter($data, function ($value) {
