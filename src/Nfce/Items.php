@@ -28,6 +28,7 @@ class Items
     public ?string $codigo_produto;
     public ?string $descricao;
     public ?string $cfop;
+    public ?string $cest;
     public ?string $quantidade_comercial;
     public ?string $quantidade_tributavel;
     public ?string $valor_unitario_comercial;
@@ -52,6 +53,7 @@ class Items
         ?string $codigo_produto = null,
         ?string $descricao = null,
         ?string $cfop = null,
+        ?string $cest = null,
         ?string $quantidade_comercial = null,
         ?string $quantidade_tributavel = null,
         ?string $valor_unitario_comercial = null,
@@ -72,6 +74,7 @@ class Items
         $this->codigo_produto = $codigo_produto;
         $this->descricao = $descricao;
         $this->cfop = $cfop;
+        $this->cest = $cest;
         $this->quantidade_comercial = $quantidade_comercial;
         $this->quantidade_tributavel = $quantidade_tributavel;
         $this->valor_unitario_comercial = str_replace(' ', '', str_replace(',', '.', $valor_unitario_comercial));
@@ -96,6 +99,7 @@ class Items
             'codigo_produto' => $this->codigo_produto,
             'descricao' => $this->descricao,
             'cfop' => $this->cfop,
+            'cest' => $this->cest,
             'quantidade_comercial' => $this->quantidade_comercial,
             'quantidade_tributavel' => $this->quantidade_tributavel,
             'valor_unitario_comercial' => $this->valor_unitario_comercial,
@@ -109,9 +113,9 @@ class Items
             'inclui_no_total' => $this->inclui_no_total,
             'icms_origem' => $this->icms_origem,
             'icms_situacao_tributaria' => $this->icms_situacao_tributaria,
-            'pis_situacao_tributaria' => $this->pis_situacao_tributaria,
-            'cofins_situacao_tributaria' => $this->cofins_situacao_tributaria,
-            'icms_modalidade_base_calculo' => $this->icms_modalidade_base_calculo
+            // 'pis_situacao_tributaria' => $this->pis_situacao_tributaria,
+            // 'cofins_situacao_tributaria' => $this->cofins_situacao_tributaria,
+            // 'icms_modalidade_base_calculo' => $this->icms_modalidade_base_calculo
         ];
 
         //limpa null do array
