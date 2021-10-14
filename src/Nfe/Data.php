@@ -243,6 +243,14 @@ class Data
 
         if(isset($this->cpfDestinatario) && $this->cpfDestinatario){
             $data['cpf_destinatario'] = $this->cpfDestinatario;
+        }else{
+            $data['cpf_destinatario'] = '';
+        }
+
+        if(isset($this->cnpjDestinatario) && $this->cnpjDestinatario){
+            $data['cnpj_destinatario'] = $this->cnpjDestinatario;
+        }else{
+            $data['cnpj_destinatario'] = '';
         }
 
         if(isset($this->telefoneDestinatario) && $this->telefoneDestinatario){
