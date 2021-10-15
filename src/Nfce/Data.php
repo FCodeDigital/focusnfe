@@ -238,7 +238,7 @@ class Data
         if(isset($this->cpfDestinatario) && $this->cpfDestinatario){
             $data['cpf_destinatario'] = $this->cpfDestinatario;
         }else{
-            $data['cnpj_destinatario'] = '';
+            $data['cpf_destinatario'] = '';
         }
 
         if(isset($this->cnpjDestinatario) && $this->cnpjDestinatario){
