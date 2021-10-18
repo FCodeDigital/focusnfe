@@ -9,6 +9,10 @@ class Data
 
     public ?string $localDestino;
     public ?string $presencaComprador;
+    public ?string $valor_desconto;
+    public ?string $valor_produtos;
+    public ?string $valor_total;
+    public ?string $valor_troco;
 
     //Emitente
     public ?string $cnpjEmitente;
@@ -108,7 +112,11 @@ class Data
         ?string $dataEmissao, //"2021-04-07T14:46:01-03:00"
         ?string $modalidadeFrete = null,
         ?string $localDestino = null,
-        ?string $presencaComprador = null
+        ?string $presencaComprador = null,
+        ?string $valor_desconto = null,
+        ?string $valor_produtos = null,
+        ?string $valor_total = null,
+        ?string $valor_troco = null
     )
     {
         $this->naturezaOperacao = $naturezaOperacao;
@@ -116,6 +124,10 @@ class Data
         $this->modalidadeFrete = $modalidadeFrete;
         $this->localDestino = $localDestino;
         $this->presencaComprador = $presencaComprador;
+        $this->valor_desconto = str_replace(' ', '', str_replace(',', '.', $valor_desconto));
+        $this->valor_produtos = str_replace(' ', '', str_replace(',', '.', $valor_produtos));
+        $this->valor_total = str_replace(' ', '', str_replace(',', '.', $valor_total));
+        $this->valor_troco = str_replace(' ', '', str_replace(',', '.', $valor_troco));
     }
 
     //set items
@@ -301,6 +313,22 @@ class Data
 
         if(isset($this->indicadorInscricaoEstadualDestinatario) && $this->indicadorInscricaoEstadualDestinatario){
             $data['indicador_inscricao_estadual_destinatario'] = $this->indicadorInscricaoEstadualDestinatario;
+        }
+
+        if(isset($this->valor_desconto) && $this->valor_desconto){
+            $data['valor_desconto'] = number_format($this->valor_desconto, 2, '.', '');
+        }
+
+        if(isset($this->valor_produtos) && $this->valor_produtos){
+            $data['valor_produtos'] = number_format($this->valor_produtos, 2, '.', '');
+        }
+
+        if(isset($this->valor_total) && $this->valor_total){
+            $data['valor_total'] = number_format($this->valor_total, 2, '.', '');
+        }
+
+        if(isset($this->valor_troco) && $this->valor_troco){
+            $data['valor_troco'] = number_format($this->valor_troco, 2, '.', '');
         }
 
         //limpa null do array
