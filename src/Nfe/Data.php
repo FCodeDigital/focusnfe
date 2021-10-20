@@ -11,6 +11,7 @@ class Data
     public ?string $dataEntradaSaida;
     public ?string $tipoDocumento;
     public ?string $finalidadeEmissao;
+    public ?string $valor_troco = null;
 
     public ?string $localDestino;
     public ?string $consumidorFinal;
@@ -42,6 +43,7 @@ class Data
     public ?string $paisDestinatario = null;
     public ?string $cepDestinatario = null;
     public ?string $indicadorInscricaoEstadualDestinatario = null;
+    public ?string $inscricaoEstadualDestinatario = null;
 
 
 
@@ -73,7 +75,8 @@ class Data
         ?string $ufDestinatario = null,
         ?string $paisDestinatario = null,
         ?string $cepDestinatario = null,
-        ?string $indicadorInscricaoEstadualDestinatario = null
+        ?string $indicadorInscricaoEstadualDestinatario = null,
+        ?string $inscricaoEstadualDestinatario = null
     )
     {
         $this->nomeDestinatario = $nomeDestinatario;
@@ -88,6 +91,7 @@ class Data
         $this->paisDestinatario = $paisDestinatario;
         $this->cepDestinatario = $cepDestinatario;
         $this->indicadorInscricaoEstadualDestinatario = $indicadorInscricaoEstadualDestinatario;
+        $this->inscricaoEstadualDestinatario = $inscricaoEstadualDestinatario;
     }
 
     public function setEmitente(
@@ -115,6 +119,13 @@ class Data
         $this->cepEmitente = $cepEmitente;
         $this->inscricaoEstadualEmitente = $inscricaoEstadualEmitente;
         $this->regimeTributarioEmitente = $regimeTributarioEmitente;
+    }
+
+    public function setTroco(
+        ?string $valor_troco = null
+    )
+    {
+        $this->valor_troco = $valor_troco;
     }
 
     public function setDados(
@@ -331,6 +342,10 @@ class Data
 
         if(isset($this->indicadorInscricaoEstadualDestinaterio) && $this->indicadorInscricaoEstadualDestinaterio){
             $data['indicador_inscricao_estadual_destinatario'] = $this->indicadorInscricaoEstadualDestinaterio;
+        }
+
+        if(isset($this->valor_troco) && $this->valor_troco){
+            $data['valor_troco'] = number_format($this->valor_troco, 2, '.', '');
         }
 
         //limpa null do array
