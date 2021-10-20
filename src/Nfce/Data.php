@@ -40,6 +40,8 @@ class Data
     public ?string $paisDestinatario = null;
     public ?string $cepDestinatario = null;
     public ?string $indicadorInscricaoEstadualDestinatario = null;
+    public ?string $inscricaoEstadualDestinatario = null;
+
 
     public ?string $modalidadeFrete = '9';
     public array $items = [];
@@ -63,7 +65,8 @@ class Data
         ?string $ufDestinatario = null,
         ?string $paisDestinatario = null,
         ?string $cepDestinatario = null,
-        ?string $indicadorInscricaoEstadualDestinatario = null
+        ?string $indicadorInscricaoEstadualDestinatario = null,
+        ?string $inscricaoEstadualDestinatario = null
     )
     {
         $this->nomeDestinatario = $nomeDestinatario;
@@ -78,6 +81,7 @@ class Data
         $this->paisDestinatario = $paisDestinatario;
         $this->cepDestinatario = $cepDestinatario;
         $this->indicadorInscricaoEstadualDestinatario = $indicadorInscricaoEstadualDestinatario;
+        $this->inscricaoEstadualDestinatario = $inscricaoEstadualDestinatario;
     }
 
     public function setEmitente(
@@ -313,6 +317,10 @@ class Data
 
         if(isset($this->indicadorInscricaoEstadualDestinatario) && $this->indicadorInscricaoEstadualDestinatario){
             $data['indicador_inscricao_estadual_destinatario'] = $this->indicadorInscricaoEstadualDestinatario;
+        }
+
+        if(isset($this->indicadorInscricaoEstadualDestinaterio) && $this->indicadorInscricaoEstadualDestinaterio){
+            $data['indicador_inscricao_estadual_destinatario'] = $this->indicadorInscricaoEstadualDestinaterio;
         }
 
         if(isset($this->valor_desconto) && $this->valor_desconto){
