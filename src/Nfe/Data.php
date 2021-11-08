@@ -316,7 +316,7 @@ class Data
             $data['valor_produtos'] = str_replace(' ', '', str_replace(',', '.', $this->valorProdutos));
         }
 
-        if(isset($this->modalidadeFrete) && $this->modalidadeFrete){
+        if(isset($this->modalidadeFrete)){
             $data['modalidade_frete'] = $this->modalidadeFrete;
         }
 
