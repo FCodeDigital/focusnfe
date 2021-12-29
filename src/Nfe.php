@@ -23,6 +23,11 @@ class Nfe extends FocusNfe
         return $this->callPost("/v2/nfe?ref=" . $reference, $params->toArray());
     }
 
+    public function enviarJson(string $reference, array $params)
+    {
+        return $this->callPost("/v2/nfe?ref=" . $reference, $params);
+    }
+
     //consultarNfe
     public function consultar(string $reference, int $completa = NULL)
     {
