@@ -14,7 +14,7 @@ Ou inclua a linha abaixo no seu `composer.json`:
 
 ```json
     "require": {
-        "fcodedigital/focusnfe" : "^1.0"
+        "fcodedigital/focusnfe" : "^3.0"
     }
 ```
 

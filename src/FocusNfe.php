@@ -103,9 +103,6 @@ class FocusNfe
         if ($http_code == 415) {
             throw new \Exception("JSON contém erro", $http_code);
         }
-        if ($http_code == 422) {
-            throw new \Exception("Não existe erro na requisição (sintaxe), porém há algum erro de semântica (por exemplo, tentar cancelar uma nota já cancelada)", $http_code);
-        }
         if ($http_code == 429) {
             throw new \Exception("Você ultrapassou o limite de requisições por minuto.", $http_code);
         }

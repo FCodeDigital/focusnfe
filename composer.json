@@ -4,7 +4,11 @@
     "type": "library",
     "keywords": [
         "focusnfe",
-        "nfe"
+        "nfe",
+        "nfce",
+        "nfce-focus",
+        "nfce-focus-api",
+        "nfce-focus-api-php"
     ],
     "license": "Apache-2.0",
     "autoload": {
