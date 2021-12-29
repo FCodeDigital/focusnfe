@@ -25,7 +25,7 @@ class Nfce extends FocusNfe
 
     public function enviarJson(string $reference, array $params)
     {
-        return $this->callPost("/v2/nfe?ref=" . $reference, $params);
+        return $this->callPost("/v2/nfce?ref=" . $reference, $params);
     }
 
     //consultarNfce
