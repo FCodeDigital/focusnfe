@@ -4,7 +4,7 @@ namespace FCodeDigital\FocusNfe\Nfe;
 
 class Data
 {
-    public ?string $formaPagamento;
+    public ?array $formaPagamento;
 
     public ?string $naturezaOperacao;
     public ?string $dataEmissao;
@@ -16,6 +16,7 @@ class Data
     public ?string $localDestino;
     public ?string $consumidorFinal;
     public ?string $presencaComprador;
+    public ?string $informacoesAdicionaisContribuinte;
 
     //Emitente
     public ?string $cnpjEmitente;
@@ -142,7 +143,8 @@ class Data
         ?string $modalidadeFrete = null,
         ?string $localDestino = null,
         ?string $consumidorFinal = null,
-        ?string $presencaComprador = null
+        ?string $presencaComprador = null,
+        ?string $informacoesAdicionaisContribuinte = null
     )
     {
         $this->naturezaOperacao = $naturezaOperacao;
@@ -159,6 +161,7 @@ class Data
         $this->localDestino = $localDestino;
         $this->consumidorFinal = $consumidorFinal;
         $this->presencaComprador = $presencaComprador;
+        $this->informacoesAdicionaisContribuinte = $informacoesAdicionaisContribuinte;
     }
 
     //set items
@@ -175,13 +178,13 @@ class Data
 
     public function addFormaPagamento(\FCodeDigital\FocusNfe\Nfe\FormaPagamento $forma_pagamento)
     {
-        $this->forma_pagamento[] = $forma_pagamento;
+        $this->formaPagamento[] = $forma_pagamento;
     }
 
     //get items
     public function getFormaPagamento()
     {
-        return $this->forma_pagamento;
+        return $this->formaPagamento;
     }
 
     //to array
@@ -336,12 +339,16 @@ class Data
             $data['presenca_comprador'] = $this->presencaComprador;
         }
 
+        if(isset($this->informacoesAdicionaisContribuinte) && $this->informacoesAdicionaisContribuinte){
+            $data['informacoes_adicionais_contribuinte'] = $this->informacoesAdicionaisContribuinte;
+        }
+
         if(isset($this->inscricaoEstadualDestinatario) && $this->inscricaoEstadualDestinatario){
             $data['inscricao_estadual_destinatario'] = $this->inscricaoEstadualDestinatario;
         }
 
-        if(isset($this->indicadorInscricaoEstadualDestinaterio) && $this->indicadorInscricaoEstadualDestinaterio){
-            $data['indicador_inscricao_estadual_destinatario'] = $this->indicadorInscricaoEstadualDestinaterio;
+        if(isset($this->indicadorInscricaoEstadualDestinatario) && $this->indicadorInscricaoEstadualDestinatario){
+            $data['indicador_inscricao_estadual_destinatario'] = $this->indicadorInscricaoEstadualDestinatario;
         }
 
         if(isset($this->valor_troco) && $this->valor_troco){
@@ -361,8 +368,8 @@ class Data
         }
 
         $data['formas_pagamento'] = [];
-        if($this->forma_pagamento) {
-            foreach ($this->forma_pagamento as $formapag) {
+        if($this->formaPagamento) {
+            foreach ($this->formaPagamento as $formapag) {
                 $data['formas_pagamento'][] = $formapag->toArray();
             }
         }
