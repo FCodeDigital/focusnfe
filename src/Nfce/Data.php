@@ -47,6 +47,8 @@ class Data
     public array $items = [];
     public array $formas_pagamento = [];
 
+    public array $observacoes_contribuinte = [];
+
     public function __construct(
 
     ) {
@@ -82,6 +84,21 @@ class Data
         $this->cepDestinatario = $cepDestinatario;
         $this->indicadorInscricaoEstadualDestinatario = $indicadorInscricaoEstadualDestinatario;
         $this->inscricaoEstadualDestinatario = $inscricaoEstadualDestinatario;
+    }
+
+    public function setObservacoesContribuinte(
+        ?string $chave = null,
+        ?string $observacao = null
+    )
+    {
+        //chave max 20 carac
+        $chave = substr($chave, 0, 20);
+        //observacao max 60 carac
+        $observacao = substr($observacao, 0, 60);
+
+        $proximo_idx = count($this->observacoes_contribuinte);
+        $this->observacoes_contribuinte[$proximo_idx]['campo'] = $chave;
+        $this->observacoes_contribuinte[$proximo_idx]['texto'] = $observacao;
     }
 
     public function setEmitente(
@@ -149,13 +166,13 @@ class Data
     //set items
     public function addFormaPagamento(\FCodeDigital\FocusNfe\Nfce\FormaPagamento $forma_pagamento)
     {
-        $this->forma_pagamento[] = $forma_pagamento;
+        $this->formas_pagamento[] = $forma_pagamento;
     }
 
     //get items
     public function getFormaPagamento()
     {
-        return $this->forma_pagamento;
+        return $this->formas_pagamento;
     }
 
     //to array
@@ -203,9 +220,9 @@ class Data
             $data['data_emissao'] = $this->dataEmissao;
         }
 
-        if(isset($this->finalidadeEmissao) && $this->finalidadeEmissao){
-            $data['finalidade_emissao'] = $this->finalidadeEmissao;
-        }
+        // if(isset($this->finalidadeEmissao) && $this->finalidadeEmissao){
+        //     $data['finalidade_emissao'] = $this->finalidadeEmissao;
+        // }
 
         if(isset($this->cnpjEmitente) && $this->cnpjEmitente){
             $data['cnpj_emitente'] = $this->cnpjEmitente;
@@ -303,9 +320,9 @@ class Data
             $data['local_destino'] = $this->localDestino;
         }
 
-        if(isset($this->consumidorFinal) && $this->consumidorFinal){
-            $data['consumidor_final'] = $this->consumidorFinal;
-        }
+        // if(isset($this->consumidorFinal) && $this->consumidorFinal){
+        //     $data['consumidor_final'] = $this->consumidorFinal;
+        // }
 
         if(isset($this->regimeTributarioEmitente) && $this->regimeTributarioEmitente){
             $data['regime_tributario_emitente'] = $this->regimeTributarioEmitente;
@@ -317,10 +334,6 @@ class Data
 
         if(isset($this->indicadorInscricaoEstadualDestinatario) && $this->indicadorInscricaoEstadualDestinatario){
             $data['indicador_inscricao_estadual_destinatario'] = $this->indicadorInscricaoEstadualDestinatario;
-        }
-
-        if(isset($this->indicadorInscricaoEstadualDestinaterio) && $this->indicadorInscricaoEstadualDestinaterio){
-            $data['indicador_inscricao_estadual_destinatario'] = $this->indicadorInscricaoEstadualDestinaterio;
         }
 
         if(isset($this->valor_desconto) && $this->valor_desconto){
@@ -339,6 +352,10 @@ class Data
             $data['valor_troco'] = number_format($this->valor_troco, 2, '.', '');
         }
 
+        if(isset($this->observacoes_contribuinte) && $this->observacoes_contribuinte){
+            $data['observacoes_contribuinte'] = $this->observacoes_contribuinte;
+        }
+
         //limpa null do array
         $data = array_filter($data, function ($value) {
             return ($value !== null && $value !== false);
@@ -352,8 +369,8 @@ class Data
         }
 
         $data['formas_pagamento'] = [];
-        if($this->forma_pagamento) {
-            foreach ($this->forma_pagamento as $formapag) {
+        if($this->formas_pagamento) {
+            foreach ($this->formas_pagamento as $formapag) {
                 $data['formas_pagamento'][] = $formapag->toArray();
             }
         }
