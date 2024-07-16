@@ -7,6 +7,7 @@ class Data
     public ?string $naturezaOperacao;
     public ?string $dataEmissao;
 
+    public ?string $finalidadeEmissao;
     public ?string $localDestino;
     public ?string $presencaComprador;
     public ?string $valor_desconto;
@@ -46,7 +47,6 @@ class Data
     public ?string $modalidadeFrete = '9';
     public array $items = [];
     public array $formas_pagamento = [];
-
     public array $observacoes_contribuinte = [];
 
     public function __construct(
@@ -220,9 +220,9 @@ class Data
             $data['data_emissao'] = $this->dataEmissao;
         }
 
-        // if(isset($this->finalidadeEmissao) && $this->finalidadeEmissao){
-        //     $data['finalidade_emissao'] = $this->finalidadeEmissao;
-        // }
+        if(isset($this->finalidadeEmissao) && $this->finalidadeEmissao){
+            $data['finalidade_emissao'] = $this->finalidadeEmissao;
+        }
 
         if(isset($this->cnpjEmitente) && $this->cnpjEmitente){
             $data['cnpj_emitente'] = $this->cnpjEmitente;
@@ -330,6 +330,10 @@ class Data
 
         if(isset($this->presencaComprador) && $this->presencaComprador){
             $data['presenca_comprador'] = $this->presencaComprador;
+        }
+
+        if(isset($this->indicadorInscricaoEstadualDestinatario) && $this->indicadorInscricaoEstadualDestinatario){
+            $data['indicador_inscricao_estadual_destinatario'] = $this->indicadorInscricaoEstadualDestinatario;
         }
 
         if(isset($this->indicadorInscricaoEstadualDestinatario) && $this->indicadorInscricaoEstadualDestinatario){
