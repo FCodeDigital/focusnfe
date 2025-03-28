@@ -17,7 +17,6 @@ class Data
     public ?string $consumidorFinal;
     public ?string $presencaComprador;
     public ?string $informacoesAdicionaisContribuinte;
-    public ?string $informacoesAdicionaisFisco;
 
     //Emitente
     public ?string $cnpjEmitente;
@@ -47,7 +46,7 @@ class Data
     public ?string $indicadorInscricaoEstadualDestinatario = null;
     public ?string $inscricaoEstadualDestinatario = null;
 
-
+    public array $notas_referenciadas = [];
 
     public ?string $valorFrete;
     public ?string $valorSeguro;
@@ -63,6 +62,16 @@ class Data
 
     ) {
 
+    }
+
+    public function setNotasReferenciadas(array $notas_referenciadas)
+    {
+        //verifica se tem chave_nfe dentro do array
+        if(!isset($notas_referenciadas['chave_nfe'])) {
+            throw new \Exception('Chave NFe não informada na setNotasReferenciadas');
+        }
+
+        $this->notas_referenciadas[] = (object) $notas_referenciadas;
     }
 
     public function setDestinatario(
@@ -145,8 +154,7 @@ class Data
         ?string $localDestino = null,
         ?string $consumidorFinal = null,
         ?string $presencaComprador = null,
-        ?string $informacoesAdicionaisContribuinte = null,
-        ?string $informacoesAdicionaisFisco = null
+        ?string $informacoesAdicionaisContribuinte = null
     )
     {
         $this->naturezaOperacao = $naturezaOperacao;
@@ -164,7 +172,6 @@ class Data
         $this->consumidorFinal = $consumidorFinal;
         $this->presencaComprador = $presencaComprador;
         $this->informacoesAdicionaisContribuinte = $informacoesAdicionaisContribuinte;
-        $this->informacoesAdicionaisFisco = $informacoesAdicionaisFisco;
     }
 
     //set items
@@ -346,10 +353,6 @@ class Data
             $data['informacoes_adicionais_contribuinte'] = $this->informacoesAdicionaisContribuinte;
         }
 
-        if(isset($this->informacoesAdicionaisFisco) && $this->informacoesAdicionaisFisco){
-            $data['informacoes_adicionais_fisco'] = $this->informacoesAdicionaisFisco;
-        }
-
         if(isset($this->inscricaoEstadualDestinatario) && $this->inscricaoEstadualDestinatario){
             $data['inscricao_estadual_destinatario'] = $this->inscricaoEstadualDestinatario;
         }
@@ -374,13 +377,19 @@ class Data
             }
         }
 
-        if(isset($this->formaPagamento) && $this->formaPagamento) {
-            $data['formas_pagamento'] = [];
+        $data['formas_pagamento'] = [];
+        if($this->formaPagamento) {
             foreach ($this->formaPagamento as $formapag) {
                 $data['formas_pagamento'][] = $formapag->toArray();
             }
         }
 
+        if(isset($this->notas_referenciadas) && count($this->notas_referenciadas) > 0) {
+            $data['notas_referenciadas'] = [];
+            foreach ($this->notas_referenciadas as $nota) {
+                $data['notas_referenciadas'][] = (array)$nota;
+            }
+        }
 
         return $data;
     }

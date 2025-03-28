@@ -39,11 +39,10 @@ class FormaPagamento
             'bandeira_operadora' => $this->bandeira_operadora,
         ];
 
-        //limpa null, false e empty do array
+        //limpa null do array
         $toReturn = array_filter($toReturn, function ($value) {
-            return !is_null($value) && $value !== false && $value !== '';
+            return $value !== null;
         });
-
 
         return $toReturn;
     }

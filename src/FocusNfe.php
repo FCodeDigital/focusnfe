@@ -75,7 +75,7 @@ class FocusNfe
      */
 
 
-    protected function callPost(string $url, array $params)
+    protected function callPost(string $url, array $params, bool $isJsonReturn = true)
     {
         // echo '<pre>';die(var_dump($url, json_encode($params)));
         $ch = curl_init();
@@ -110,7 +110,7 @@ class FocusNfe
             throw new \Exception("Ocorreu algum erro inesperado. Contate o suporte técnico.", $http_code);
         }
 
-        return [$http_code, json_decode($body)];
+        return [$http_code, ($isJsonReturn ? json_decode($body) : $body)];
     }
 
     protected function callGet(string $url, array $params = [])

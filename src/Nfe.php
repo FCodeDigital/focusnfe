@@ -23,6 +23,11 @@ class Nfe extends FocusNfe
         return $this->callPost("/v2/nfe?ref=" . $reference, $params->toArray());
     }
 
+    public function preview(\FCodeDigital\FocusNfe\Nfe\Data $params)
+    {
+        return $this->callPost("/v2/nfe/danfe" , $params->toArray(), false);
+    }
+
     public function enviarJson(string $reference, array $params)
     {
         return $this->callPost("/v2/nfe?ref=" . $reference, $params);
