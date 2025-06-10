@@ -26,6 +26,8 @@ class Items
 
     public ?string $numero_item;
     public ?string $codigo_produto;
+    public ?string $codigo_barras_comercial;
+    public ?string $codigo_barras_tributavel;
     public ?string $descricao;
     public ?string $cfop;
     public ?string $cest;
@@ -68,7 +70,9 @@ class Items
         ?string $icms_origem = null,
         ?string $icms_situacao_tributaria = null,
         ?string $pis_situacao_tributaria = null,
-        ?string $cofins_situacao_tributaria = null
+        ?string $cofins_situacao_tributaria = null,
+        ?string $codigo_barras_comercial = 'SEM GTIN',
+        ?string $codigo_barras_tributavel = 'SEM GTIN'
     ) {
         $this->numero_item = $numero_item;
         $this->codigo_produto = $codigo_produto;
@@ -90,6 +94,8 @@ class Items
         $this->icms_situacao_tributaria = $icms_situacao_tributaria;
         $this->pis_situacao_tributaria = $pis_situacao_tributaria;
         $this->cofins_situacao_tributaria = $cofins_situacao_tributaria;
+        $this->codigo_barras_comercial = $codigo_barras_comercial;
+        $this->codigo_barras_tributavel = $codigo_barras_tributavel;
     }
 
     public function toArray()
@@ -113,6 +119,8 @@ class Items
             'inclui_no_total' => $this->inclui_no_total,
             'icms_origem' => $this->icms_origem,
             'icms_situacao_tributaria' => $this->icms_situacao_tributaria,
+            'codigo_barras_comercial' => $this->codigo_barras_comercial,
+            'codigo_barras_tributavel' => $this->codigo_barras_tributavel,
             // 'pis_situacao_tributaria' => $this->pis_situacao_tributaria,
             // 'cofins_situacao_tributaria' => $this->cofins_situacao_tributaria,
             // 'icms_modalidade_base_calculo' => $this->icms_modalidade_base_calculo
