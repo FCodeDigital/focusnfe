@@ -378,7 +378,7 @@ class Data
         }
 
         $data['formas_pagamento'] = [];
-        if($this->formaPagamento) {
+        if(isset($this->formaPagamento) && $this->formaPagamento) {
             foreach ($this->formaPagamento as $formapag) {
                 $data['formas_pagamento'][] = $formapag->toArray();
             }
